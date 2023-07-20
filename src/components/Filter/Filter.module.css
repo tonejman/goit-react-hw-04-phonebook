@@ -1,0 +1,18 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: fit-content;
+  margin-bottom: 15px;
+}
+
+.input {
+  padding: 5px;
+  border: 1px solid rgb(197, 196, 196);
+  border-radius: 3px;
+  max-width: 160px;
+}
+
+.input:focus-visible {
+  outline: 3px solid rgb(45, 173, 233);
+}
