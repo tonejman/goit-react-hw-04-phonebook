@@ -4,53 +4,25 @@ import css from './ContactForm.module.css';
 
 const ContactForm = ({ addContact }) => {
   
-  
-  // const [state, setState] = useState({
-  //   name:'',
-  //   number:'',
-  // });
-
-
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-
-    // setState({ state, [name]: value });
-
-
- switch (name) {
-   case 'name':
-     setName(value);
-     break;
-
-   case 'number':
-     setNumber(value);
-     break;
-
-   default:
-     return;
- }
-
-
+  const handleNameChange = e => {
+    setName(e.currentTarget.value.trim());
   };
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-
-    // ----------------- test------------------
-
-    addContact(name, number);
-
-    setName({ name:'', number:'' });
+  const handleNumberChange = e => {
+    setNumber(e.currentTarget.value.trim());
   };
 
-  // -----------------test------------------
+  const handleSubmit = e => {
+    e.preventDefault();
 
-  
+    addContact({ name, number });
 
-  //  const { name, number } = this.state;
+    setName('');
+    setNumber('');
+  };
 
   return (
     <div className={css.container}>
@@ -65,7 +37,7 @@ const ContactForm = ({ addContact }) => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             value={name}
-            onChange={handleChange}
+            onChange={handleNameChange}
           />
         </label>
         <label className={css.label}>
@@ -78,7 +50,7 @@ const ContactForm = ({ addContact }) => {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             value={number}
-            onChange={handleChange}
+            onChange={handleNumberChange}
           />
         </label>
         <button className={css.btn} type="submit">

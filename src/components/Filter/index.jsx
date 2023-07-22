@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 
 const Filter = ({ filter, addFilter }) => {
-  // return (
   <div>
     <label className={css.label}>Find contacts by name</label>
     <input
@@ -13,7 +12,6 @@ const Filter = ({ filter, addFilter }) => {
       onChange={addFilter}
     ></input>
   </div>;
-  // );
 };
 Filter.propTypes = {
   filter: PropTypes.string,
