@@ -8,11 +8,11 @@ const ContactForm = ({ addContact }) => {
   const [number, setNumber] = useState('');
 
   const handleNameChange = e => {
-    setName(e.currentTarget.value.trim());
+    setName(e.currentTarget.value);
   };
 
   const handleNumberChange = e => {
-    setNumber(e.currentTarget.value.trim());
+    setNumber(e.currentTarget.value);
   };
 
   const handleSubmit = e => {
