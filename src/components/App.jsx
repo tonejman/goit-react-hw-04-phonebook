@@ -5,11 +5,27 @@ import ContactList from './ContactList';
 import { nanoid } from 'nanoid';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(
-    JSON.parse(localStorage.getItem('contacts')) ?? []
-  );
-
+  const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
+
+  const [savedData, setSavedData] = useState(true);
+
+  useEffect(() => {
+    if (savedData) {
+      const contactsFromLocalStorage = localStorage.getItem('contacts');
+
+      if (contactsFromLocalStorage !== 'undefined') {
+        const parsedContacts = JSON.parse(contactsFromLocalStorage);
+
+        if (parsedContacts) {
+          setContacts(parsedContacts);
+        }
+      }
+      setSavedData(false);
+    } else {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }, [contacts, savedData]);
 
   const addContact = ({ name, number }) => {
     const newContact = {
@@ -40,10 +56,6 @@ export const App = () => {
 
     return inputContact;
   };
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   return (
     <div className="wrapper">
